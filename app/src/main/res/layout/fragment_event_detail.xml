@@ -1,0 +1,125 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!--
+        removed placeholder-text
+        The user could see it in a flash, not desirable.
+        //-->
+
+        <TextView
+            android:id="@+id/event_detail_title"
+            style="@style/textStyle_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/event_detail_description"
+            style="@style/textStyle_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:paddingTop="16dp"
+                android:id="@+id/event_detail_image"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/transparentpixel"                
+                android:maxHeight="500dp"
+                android:adjustViewBounds="true"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_toLeftOf="@id/event_detail_image"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/event_detail_stuff_container"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/event_detail_label_keywords"
+                    style="@style/textStyle_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_keywords" />
+
+                <TextView
+                    android:id="@+id/event_detail_keywords"
+                    style="@style/textStyle_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/event_detail_label_time"
+                    style="@style/textStyle_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_time" />
+
+                <TextView
+                    android:id="@+id/event_detail_starttime"
+                    style="@style/textStyle_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/event_detail_endtime"
+                    style="@style/textStyle_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/event_detail_label_location"
+                    style="@style/textStyle_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_location" />
+
+                <TextView
+                    android:id="@+id/event_detail_location"
+                    style="@style/textStyle_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/event_detail_location_description"
+                    style="@style/textStyle_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/event_detail_location_floor"
+                    style="@style/textStyle_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>            
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/event_detail_label_speakers"
+            style="@style/textStyle_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_speakers" />
+
+        <LinearLayout
+            android:id="@+id/event_detail_speakers_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="?android:attr/dividerVertical"
+            android:orientation="vertical"
+            android:showDividers="middle">
+            <!-- Speakers will be added in Java //-->
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
+<LinearLayout 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextAppearance="@style/ToolbarTitle"
+        android:background="@color/actionbar_background" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="nl.frankkie.bronydays2015.AboutActivity">
+        <!-- As the main content view, the view below consumes the entire
+                 space available using match_parent in both dimensions. -->
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context="nl.frankkie.bronydays2015.AboutActivity">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingBottom="30dp"
+                            android:text="@string/about_convention_title"
+                            android:textSize="32sp"
+                            android:id="@+id/" />
+
+                        <TextView
+                            style="@style/textStyle_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_description" />
+
+                        <!-- Location //-->
+                        <TextView
+                            style="@style/textStyle_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_location_header" />
+
+                        <TextView
+                            style="@style/textStyle_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_location_details" />
+
+                        <Button
+                            android:id="@+id/about_view_maps"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_view_map" />
+
+                        <!-- Date and Time //-->
+                        <TextView
+                            style="@style/textStyle_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_date_header" />
+
+                        <TextView
+                            style="@style/textStyle_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_date_details" />
+
+                        <!-- Website //-->
+                        <TextView
+                            style="@style/textStyle_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_website_header" />
+
+                        <TextView
+                            style="@style/textStyle_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoLink="web"
+                            android:text="@string/about_website_details" />
+
+                        <!-- Mail //-->
+                        <TextView
+                            style="@style/textStyle_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_mail_header" />
+
+                        <TextView
+                            style="@style/textStyle_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoLink="email"
+                            android:text="@string/about_mail_details" />
+
+                        <!-- Banner image (change image when using for other convention) -->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:paddingTop="15dp"
+                            android:src="@drawable/convention_banner" />
+
+                        <Button android:id="@+id/about_btn_aboutapp"
+                            android:text="@string/about_this_app"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+        </FrameLayout>
+        <!-- android:layout_gravity="start" tells DrawerLayout to treat
+             this as a sliding drawer on the left side for left-to-right
+             languages and on the right side for right-to-left languages.
+             If you're not building against API 17 or higher, use
+             android:layout_gravity="left" instead. -->
+        <!-- The drawer is given a fixed width in dp and extends the full height of
+             the container. -->
+        <fragment
+            android:id="@+id/navigation_drawer"
+            android:name="nl.frankkie.bronydays2015.NavigationDrawerFragment"
+            android:layout_width="@dimen/navigation_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            tools:layout="@layout/fragment_navigation_drawer" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

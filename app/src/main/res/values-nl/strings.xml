@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_event_detail">Details</string>
+    <string name="title_activity_about">Over</string>
+    <string name="title_activity_map">Kaart</string>
+
+    <string name="title_section_schedule">Mijn Planning</string>
+    <string name="title_section_browse">Bladeren</string>
+    <string name="title_section_map">Kaart</string>
+    <string name="title_section_about">Over</string>
+
+    <string name="navigation_drawer_open">Open navigatie paneel</string>
+    <string name="navigation_drawer_close">Close navigatie paneel</string>
+    <string name="action_example">Voorbeeld actie</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="action_share">Delen</string>
+    <string name="action_star_add">Toevoegen aan favorieten</string>
+    <string name="action_star_remove">Verwijderen uit favorieten</string>
+
+    <string name="share_text">Ik ga naar het event \'%s\' tijdens HWcon 2015! #hwcon2015</string>
+
+    <string name="about_mail_header">Email</string>
+    <string name="about_date_header">Datum</string>
+    <string name="about_location_header">Locatie</string>
+    <string name="about_website_header">Website</string>
+
+    <string name="label_keywords">Tags</string>
+    <string name="label_time">Tijd</string>
+    <string name="label_location">Lokatie</string>
+    <string name="label_speakers">Speakers</string>
+    <string name="star_tip_message">Klik op de Ster om dit Event toe te voegen aan \'Mijn Planning\'. \nDoe dit voor alle Events die je wilt bijwonen.\n\nLog in met Google+ om automatisch te synchroniseren tussen al je apparaten.</string>
+    <string name="star_tip_title">Hint</string>
+    <string name="title_activity_schedule">Planning</string>
+
+    <string name="map_floor0">Begane grond</string>
+    <string name="map_floor1">1e verdieping</string>
+    <string name="map_floor2">Zolder</string>
+
+    <!--
+        Specific for this convention
+        Change these when using for another convention
+    -->
+    <string name="about_description">Een My little Pony Conferentie in Frankrijk!</string>
+    <string name="about_location_details">Nantes, Frankrijk</string>
+    <string name="about_mail_details">info@bronydays.org</string>
+    <string name="about_website_details">www.bronydays.org/en/</string>
+    <string name="schedule_empty">Er staat nog niets in je Planning! \nKlik op de Sterren bij Events in de Bladeren-sectie om ze toe te voegen aan \'Mijn Planning\'.  \nDoe dit voor alle Events die je wilt bijwonen.</string>
+    <string name="about_map_app_not_found">Er is geen kaart app (zoals Google Maps) geinstalleerd. Installeer een kaar app en probeer opnieuw.</string>
+    <string name="about_this_app">Over deze App</string>
+    <string name="aboutapp_licences">Open source licenties</string>
+    <string name="title_activity_about_app">Over deze App</string>
+    <string name="aboutapp_frankkienl_description">Deze app is gemaakt door FrankkieNL \nVoor meer apps, zie: \nhttp://frankkie.nl/</string>
+    <string name="title_section_qr_hunt">QR Jacht</string>
+    <string name="title_section_login">Log in/Log uit</string>
+    <string name="sign_out">Sign out</string>
+    <string name="view_achievements">Bekijk prestaties</string>
+    <string name="qrlist_empty_placeholder">QR code lijst is leeg</string>
+    <string name="qrlist_empty_names_hidden">Nog geen QR codes gevonden!</string>
+    <string name="qr_scan">Scan</string>
+    <string name="barcodescanner_not_installed_title">Installeer Barcode Scanner</string>
+    <string name="barcodescanner_not_installed_message">Deze app vereist de Barcode Scanner app. Wil je deze app nu installeren?\n(Dit is verplicht om mee te doen in de QR Jacht) </string>
+    <string name="qr_not_on_list">QR Code staat niet op de lijst!</string>
+    <string name="qr_found">Goed gedaan! Je hebt een QR Code gevonden.</string>
+    <string name="qr_found_already">Je hebt deze QR Code al eerder gevonden. Zoek voor een andere!</string>
+    <string name="about_view_map">Bekijk op kaart</string>
+    <string name="qr_place_in_rectangle">Plaats de QR code in de rechthoek om hem te scannen.</string>
+    <string name="qr_login_required_title">Inloggen noodzakelijk</string>
+    <string name="qr_login_required_message">Het is noodzakelijk dat je inlogt met Google Play Games om mee te doen met de QR Jacht.</string>
+    <string name="qr_tip_message">Zoek de verborgen QR codes, scan ze met de camera van je apparaat. Vind alle QR codes!</string>
+    <string name="logging_in">Inloggen...</string>
+    <string name="google_play_games_error">Probleem met Google Play Games, start app opnieuw op aub.</string>
+    <string name="ask_nickname">Wat je nickname?</string>
+    <string name="browse_empty">Even geduld aub... Data wordt gesynchroniseerd.</string>
+    <string name="login_details">\nLogin om je schema te synchroniseren tussen je toestellen.\n\nInloggen is verplicht om mee te kunnen doen met de QR Jacht!\n\nGebruik de knop hieronder om in te loggen.</string>
+    <string name="about_date_details">31 oktober - 1 november 2015</string>
+    <string name="about_convention_title">Brony Days </string>
+    <string name="app_name">Brony Days 2015</string>
+</resources>

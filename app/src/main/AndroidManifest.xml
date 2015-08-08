@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="nl.frankkie.bronydays2015">
+
+    <!--
+    Note about version:
+    Change the versionName and versionCode in build.gradle (module: app).
+    -->
+
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <permission
+        android:name="nl.frankkie.bronydays2015.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"></permission>
+    <uses-permission android:name="nl.frankkie.bronydays2015.permission.C2D_MESSAGE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_bronydays2015_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="nl.frankkie.bronydays2015.EventListActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="nl.frankkie.bronydays2015.EventDetailActivity"
+            android:label="@string/title_event_detail"
+            android:parentActivityName="nl.frankkie.bronydays2015.EventListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventListActivity" />
+        </activity>
+
+        <activity
+            android:name="nl.frankkie.bronydays2015.AboutActivity"
+            android:label="@string/title_activity_about"></activity>
+        <activity
+            android:name="nl.frankkie.bronydays2015.AboutAppActivity"
+            android:label="@string/title_activity_about_app"
+            android:parentActivityName="nl.frankkie.bronydays2015.AboutAppActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AboutActivity" />            
+        </activity>
+        <activity android:name=".EasterEggActivity"></activity>
+        <!--
+        Don't reload WebView onConfigChange.
+        http://developer.android.com/reference/android/webkit/WebView.html
+        http://developer.android.com/guide/topics/resources/runtime-changes.html
+        //-->
+        <activity
+            android:name="nl.frankkie.bronydays2015.MapActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_map"></activity>
+        <activity
+            android:name=".ScheduleActivity"
+            android:label="@string/title_activity_schedule"></activity>
+        
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".QrHuntActivity">
+        <!-- hwcon://qr?key=val
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="hwcon" android:host="qr" />
+            </intent-filter>
+        //-->
+        </activity>
+
+        <provider
+            android:name="nl.frankkie.bronydays2015.data.EventProvider"
+            android:authorities="nl.frankkie.bronydays2015"
+            android:exported="false"
+            android:syncable="true" />
+
+        <!-- SyncAdapter //-->
+        <service
+            android:name=".sync.ConventionAuthenticatorService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+        <!-- Runs in :sync-process to reduce overhead. See docs.
+        android:process=":sync" in service-tag
+        //-->
+        <service
+            android:name=".sync.ConventionSyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <!--
+       Google Play Service for GCM
+       //-->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <!--
+        Google Play Games
+        //-->
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/google_play_games_app_id" />
+
+        <!-- GCM //-->
+        <receiver
+            android:name=".GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="nl.frankkie.bronydays2015" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".GcmIntentService" />
+    </application>
+
+</manifest>

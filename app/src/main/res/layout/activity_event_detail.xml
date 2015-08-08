@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextAppearance="@style/ToolbarTitle"
+        android:background="@color/actionbar_background" />
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/event_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".EventDetailActivity"
+        tools:ignore="MergeRootFrame" />
+</LinearLayout>

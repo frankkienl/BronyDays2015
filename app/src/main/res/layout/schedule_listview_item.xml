@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/touch_selector"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--
+    Added LinearLayout as Root-View to draw a background color.
+    FrameLayout.setBackground(Drawable) only works on api16+
+    //-->
+    <FrameLayout
+        android:id="@+id/schedule_listview_item_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--
+        FrameLayout allows us to draw a over the content
+        We will use this to draw a color over the content, like in iosched. //-->
+        <ImageView
+            android:id="@+id/schedule_listview_item_backgroudimage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- I use a LinearLayout with layout_height=match_parent and
+        gravity=bottom because I think this will have
+        better performance then using a RelativeLayout with
+        align=parent_bottom //-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <!-- Just using built-in styles for text //-->
+            <TextView
+                android:id="@+id/schedule_listview_item_eventtime"
+                style="@android:style/TextAppearance.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_short" />
+            <TextView
+                android:id="@+id/schedule_listview_item_eventname"
+                style="@android:style/TextAppearance.Medium"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_short" />
+            <TextView
+                android:id="@+id/schedule_listview_item_eventlocation"
+                style="@android:style/TextAppearance.Small"
+                android:gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_short" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

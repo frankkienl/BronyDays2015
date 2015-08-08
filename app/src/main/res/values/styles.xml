@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <!-- Main theme colors -->
+        <!-- https://developer.android.com/training/material/theme.html#ColorPalette //-->
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/actionbar_background</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/actionbar_background_dark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/actionbar_background</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!-- http://stackoverflow.com/questions/28042331/android-toolbar-small-title-text-in-landscape-mode //-->
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!-- TODO: Screen text-styles //-->
+    <style name="textStyle_header">
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+    <style name="textStyle_details">
+
+    </style>
+    <style name="textStyle_speakername">
+        <item name="android:textSize">26sp</item>
+    </style>
+</resources>
