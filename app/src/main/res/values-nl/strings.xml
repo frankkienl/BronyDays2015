@@ -41,7 +41,7 @@
         Change these when using for another convention
     -->
     <string name="about_description">Een My little Pony Conferentie in Frankrijk!</string>
-    <string name="about_location_details">Nantes, Frankrijk</string>
+    <string name="about_location_details">Salle de L\'Odyssée \nLe Bois Cesbron \n44706 Orvault \nNantes, Frankrijk</string>
     <string name="about_mail_details">info@bronydays.org</string>
     <string name="about_website_details">www.bronydays.org/en/</string>
     <string name="schedule_empty">Er staat nog niets in je Planning! \nKlik op de Sterren bij Events in de Bladeren-sectie om ze toe te voegen aan \'Mijn Planning\'.  \nDoe dit voor alle Events die je wilt bijwonen.</string>

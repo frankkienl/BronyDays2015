@@ -49,7 +49,7 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
         if ((syncFlags & Util.SYNCFLAG_CONVENTION_DATA) == Util.SYNCFLAG_CONVENTION_DATA) {
             String regId = GcmUtil.gcmGetRegId(getContext());
             //CHANGE THIS URL WHEN USING FOR OTHER CONVENTION
-            String json = Util.httpDownload("http://wofje.8s.nl/hwcon/api/v1/downloadconventiondata.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
+            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadconventiondata.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
             if (json != null) {
                 parseConventionDataJSON(json);
             }
@@ -57,7 +57,7 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
         if ((syncFlags & Util.SYNCFLAG_DOWNLOAD_FAVORITES) == Util.SYNCFLAG_DOWNLOAD_FAVORITES) {
             String regId = GcmUtil.gcmGetRegId(getContext());
             //With username "&username=", for syncing between devices of same user
-            String json = Util.httpDownload("http://wofje.8s.nl/hwcon/api/v1/downloadfavorites.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
+            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadfavorites.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
             if (json != null) {
                 parseFavoritesDataJson(json);
             }
@@ -88,10 +88,10 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
                     String json = wrapper.toString();
                     String postData = "json=" + json;
                     ////////////////////////////
-                    String response = Util.httpPost(getContext(), "http://wofje.8s.nl/hwcon/api/v1/uploadfavorites.php", postData);
+                    String response = Util.httpPost(getContext(), "http://wofje.8s.nl/bronydays2015/api/v1/uploadfavorites.php", postData);
                     if (!"ok".equals(response.trim())) {
                         //There muse be something wrong
-                        Util.sendACRAReport("Server did not send 'ok', Favorites", "http://wofje.8s.nl/hwcon/api/v1/uploadfavorites.php", postData + "\n" + response);
+                        Util.sendACRAReport("Server did not send 'ok', Favorites", "http://wofje.8s.nl/bronydays2015/api/v1/uploadfavorites.php", postData + "\n" + response);
                     }
                 }
                 /////////////////////////////
@@ -134,10 +134,10 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
                     String json = wrapper.toString();
                     String postData = "json=" + json;
                     ////////////////////////////
-                    String response = Util.httpPost(getContext(), "http://wofje.8s.nl/hwcon/api/v1/uploadqrfound.php", postData);
+                    String response = Util.httpPost(getContext(), "http://wofje.8s.nl/bronydays2015/api/v1/uploadqrfound.php", postData);
                     if (!"ok".equals(response.trim())) {
                         //There muse be something wrong
-                        Util.sendACRAReport("Server did not send 'ok', QRs", "http://wofje.8s.nl/hwcon/api/v1/uploadqrfound.php", postData + "\n" + response);
+                        Util.sendACRAReport("Server did not send 'ok', QRs", "http://wofje.8s.nl/bronydays2015/api/v1/uploadqrfound.php", postData + "\n" + response);
                     }
                 }
             } catch (Exception e) {
@@ -148,7 +148,7 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
         ////
         if ((syncFlags & Util.SYNCFLAG_DOWNLOAD_QRFOUND) == Util.SYNCFLAG_DOWNLOAD_QRFOUND) {
             String regId = GcmUtil.gcmGetRegId(getContext());
-            String json = Util.httpDownload("http://wofje.8s.nl/hwcon/api/v1/downloadqrfound.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
+            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadqrfound.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
             if (json != null) {
                 parseQrFoundDataJson(json);
             }

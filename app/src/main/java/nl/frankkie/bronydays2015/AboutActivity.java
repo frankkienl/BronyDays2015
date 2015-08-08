@@ -106,7 +106,17 @@ public class AboutActivity extends ActionBarActivity implements NavigationDrawer
                 //i.setData(Uri.parse("https://www.google.nl/maps?t=m&z=15&cid=11779929733433826402"));
                 //i.setData(Uri.parse("geo:52.3118607,4.6636143"));
                 //i.setData(Uri.parse("geo:0,0?q=52.3118607,4.6636143(Venue)"));
-                i.setData(Uri.parse("geo:0,0?q=IJweg%201094%202133%20MH%20Hoofddorp"));
+                //i.setData(Uri.parse("geo:0,0?q=IJweg%201094%202133%20MH%20Hoofddorp"));
+                //Brony Days is at:
+                //Salle de L'Odyssée
+                //Le Bois Cesbron
+                //44706 Orvault
+                //Nantes, France
+                //goo.gl/maps/mJwyz
+                //https://www.google.com/maps?cid=10009887702371532917&hl=nl&gl=nl
+                //47.261308, -1.622707
+                //i.setData(Uri.parse("geo:47.261308,-1.622707?q=47.261308,-1.622707(Venue)"));
+                i.setData(Uri.parse("geo:47.261308,-1.622707?q=L’Odyssée%20Bois%20Cesbron%2044700%20Orvault"));
                 try {
                     startActivity(i);
                 } catch (ActivityNotFoundException anfe) {
