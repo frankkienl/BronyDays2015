@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="actionbar_background">#F80</color>
-    <color name="actionbar_background_dark">#D60</color>
+    <color name="actionbar_background">#a2c3db</color>
+    <color name="actionbar_background_dark">#4a799a</color>
     <color name="gridview_clicked">#AAA</color>
     <color name="gridview_active">#AAF</color>
     <color name="gridview_normal">#DDD</color>

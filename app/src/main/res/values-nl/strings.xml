@@ -74,5 +74,5 @@
     <string name="login_details">\nLogin om je schema te synchroniseren tussen je toestellen.\n\nInloggen is verplicht om mee te kunnen doen met de QR Jacht!\n\nGebruik de knop hieronder om in te loggen.</string>
     <string name="about_date_details">31 oktober - 1 november 2015</string>
     <string name="about_convention_title">Brony Days </string>
-    <string name="app_name">Brony Days 2015</string>
+    <string name="app_name">Brony Days</string>
 </resources>
