@@ -149,7 +149,7 @@ public class Util {
         builder.setContentText(message);
         builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
-        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher2));
+        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_bronydays2015_launcher));
         builder.setVibrate(new long[]{50, 250, 50, 250}); //delay,vibrate,delay,etc.
         //http://stackoverflow.com/questions/8801122/set-notification-sound-from-assets-folder
         //The docs are not clear about how to add sound, StackOverflow to the rescue!

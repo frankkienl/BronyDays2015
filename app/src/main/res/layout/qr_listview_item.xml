@@ -22,7 +22,7 @@
         android:id="@+id/qrlistitem_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"        
-        android:src="@drawable/ic_launcher2" />
+        android:src="@drawable/ic_bronydays2015_launcher" />
     </LinearLayout>
 
     <TextView

@@ -32,7 +32,7 @@ import nl.frankkie.bronydays2015.R;
  */
 public class GcmUtil {
     //GCM
-    public static final String GCM_PROJECT_ID = "445536900909";
+    public static final String GCM_PROJECT_ID = "237423502166";
 
     /**
      * Gives GCM Reg ID or "" on error (or not registered yet)
