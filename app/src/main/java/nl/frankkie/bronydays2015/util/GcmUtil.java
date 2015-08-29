@@ -268,10 +268,6 @@ public class GcmUtil {
             Util.syncData(context, Util.SYNCFLAG_UPLOAD_FAVORITES);   
         } else if ("generateErrorReport".equals(action)) {
             ACRA.getErrorReporter().handleException(new RuntimeException("Error Report triggered by GCM"));
-        } else if ("uploadQrFound".equals(action)){
-            Util.syncData(context,Util.SYNCFLAG_UPLOAD_QRFOUND);
-        } else if ("downloadQrFound".equals(action)){
-            Util.syncData(context, Util.SYNCFLAG_DOWNLOAD_QRFOUND);
         }
     }
 

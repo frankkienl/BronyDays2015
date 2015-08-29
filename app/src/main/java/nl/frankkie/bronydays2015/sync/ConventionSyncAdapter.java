@@ -16,11 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
 import nl.frankkie.bronydays2015.data.EventContract;
 import nl.frankkie.bronydays2015.util.GcmUtil;
-import nl.frankkie.bronydays2015.util.GoogleApiUtil;
 import nl.frankkie.bronydays2015.util.Util;
 
 /**
@@ -49,7 +46,7 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
         if ((syncFlags & Util.SYNCFLAG_CONVENTION_DATA) == Util.SYNCFLAG_CONVENTION_DATA) {
             String regId = GcmUtil.gcmGetRegId(getContext());
             //CHANGE THIS URL WHEN USING FOR OTHER CONVENTION
-            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadconventiondata.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
+            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadconventiondata.php?regId=" + regId );
             if (json != null) {
                 parseConventionDataJSON(json);
             }
@@ -57,7 +54,7 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
         if ((syncFlags & Util.SYNCFLAG_DOWNLOAD_FAVORITES) == Util.SYNCFLAG_DOWNLOAD_FAVORITES) {
             String regId = GcmUtil.gcmGetRegId(getContext());
             //With username "&username=", for syncing between devices of same user
-            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadfavorites.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
+            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadfavorites.php?regId=" + regId );
             if (json != null) {
                 parseFavoritesDataJson(json);
             }
@@ -80,8 +77,6 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
                     root.put("events", events);
                     JSONObject device = new JSONObject();
                     device.put("regId", GcmUtil.gcmGetRegId(getContext()));
-                    device.put("username", GoogleApiUtil.getUserEmail(getContext()));
-                    device.put("nickname", GoogleApiUtil.getUserNickname(getContext()));
                     root.put("device", device);
                     JSONObject wrapper = new JSONObject();
                     wrapper.put("data", root);
@@ -99,85 +94,6 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
                 ACRA.getErrorReporter().handleException(e);
                 e.printStackTrace();
             }
-        }
-        ///
-        if ((syncFlags & Util.SYNCFLAG_UPLOAD_QRFOUND) == Util.SYNCFLAG_UPLOAD_QRFOUND) {
-            try {
-                Cursor cursor = getContext().getContentResolver().query(
-                        EventContract.QrFoundEntry.CONTENT_URI, //table
-                        new String[]{EventContract.QrFoundEntry.COLUMN_NAME_QR_ID, //projection
-                                EventContract.QrFoundEntry.COLUMN_NAME_TIME},
-                        null, //selection
-                        null, //selectionArgs
-                        null //sort-order
-                );
-                if (cursor.getCount() != 0) {
-                    JSONObject root = new JSONObject();
-                    JSONArray qrsfound = new JSONArray();
-                    cursor.moveToFirst();
-                    do {
-                        JSONObject qrfound = new JSONObject();
-                        qrfound.put("qr_id", cursor.getString(0));
-                        long unixTimestamp = Long.parseLong(cursor.getString(1));                         
-                        qrfound.put("found_time", unixTimestamp);
-                        qrsfound.put(qrfound);
-                    } while (cursor.moveToNext());
-                    cursor.close();
-                    root.put("qrsfound", qrsfound);
-                    JSONObject device = new JSONObject();
-                    device.put("regId", GcmUtil.gcmGetRegId(getContext()));
-                    device.put("username", GoogleApiUtil.getUserEmail(getContext()));
-                    device.put("nickname", GoogleApiUtil.getUserNickname(getContext()));                            
-                    root.put("device", device);
-                    JSONObject wrapper = new JSONObject();
-                    wrapper.put("data", root);
-                    String json = wrapper.toString();
-                    String postData = "json=" + json;
-                    ////////////////////////////
-                    String response = Util.httpPost(getContext(), "http://wofje.8s.nl/bronydays2015/api/v1/uploadqrfound.php", postData);
-                    if (!"ok".equals(response.trim())) {
-                        //There muse be something wrong
-                        Util.sendACRAReport("Server did not send 'ok', QRs", "http://wofje.8s.nl/bronydays2015/api/v1/uploadqrfound.php", postData + "\n" + response);
-                    }
-                }
-            } catch (Exception e) {
-                ACRA.getErrorReporter().handleException(e);
-                e.printStackTrace();
-            }
-        }
-        ////
-        if ((syncFlags & Util.SYNCFLAG_DOWNLOAD_QRFOUND) == Util.SYNCFLAG_DOWNLOAD_QRFOUND) {
-            String regId = GcmUtil.gcmGetRegId(getContext());
-            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadqrfound.php?regId=" + regId + "&username=" + GoogleApiUtil.getUserEmail(getContext()));
-            if (json != null) {
-                parseQrFoundDataJson(json);
-            }
-        }
-    }
-
-    public void parseQrFoundDataJson(String json) {
-        try {
-            JSONObject data = new JSONObject(json).getJSONObject("data");
-            JSONArray qrsfound = data.getJSONArray("qrsfound");
-            ContentValues[] qrfCVs = new ContentValues[qrsfound.length()];
-            for (int i = 0; i < qrsfound.length(); i++) {
-                JSONObject qrf = qrsfound.getJSONObject(i);
-                ContentValues qrCV = new ContentValues();
-                qrCV.put(EventContract.QrFoundEntry.COLUMN_NAME_QR_ID, qrf.getString("qr_id"));
-                qrCV.put(EventContract.QrFoundEntry.COLUMN_NAME_TIME, qrf.getString("found_time"));
-                qrfCVs[i] = qrCV;
-            }
-
-            //Delete old values
-            getContext().getContentResolver().delete(EventContract.QrFoundEntry.CONTENT_URI, null, null); //null deletes all rows
-            //Insert new ones
-            getContext().getContentResolver().bulkInsert(EventContract.QrFoundEntry.CONTENT_URI, qrfCVs);
-            //Notify observers
-            getContext().getContentResolver().notifyChange(EventContract.QrFoundEntry.CONTENT_URI, null);
-            //Notify QR list.
-            getContext().getContentResolver().notifyChange(EventContract.QrEntry.CONTENT_URI, null);
-        } catch (Exception e) {
-            ACRA.getErrorReporter().handleException(e);
         }
     }
 
@@ -269,29 +185,6 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
             getContext().getContentResolver().delete(EventContract.SpeakersInEventsEntry.CONTENT_URI, null, null);
             getContext().getContentResolver().bulkInsert(EventContract.SpeakersInEventsEntry.CONTENT_URI, sieCVs);
             getContext().getContentResolver().notifyChange(EventContract.SpeakersInEventsEntry.CONTENT_URI, null);
-            //</editor-fold>
-
-            //<editor-fold desc="qr">
-            //QR is a separate table, to keep the userdata (found or not) separate from the convention-data
-            if (data.has("qr")) {
-                JSONArray qrs = data.getJSONArray("qr");
-                ContentValues[] qrCVs = new ContentValues[qrs.length()];
-                for (int i = 0; i < qrs.length(); i++) {
-                    JSONObject qr = qrs.getJSONObject(i);
-                    ContentValues qrCV = new ContentValues();
-                    qrCV.put(EventContract.QrEntry._ID, qr.getInt("_id"));
-                    qrCV.put(EventContract.QrEntry.COLUMN_NAME_HASH, qr.getString("hash"));
-                    qrCV.put(EventContract.QrEntry.COLUMN_NAME_NAME, qr.getString("name"));
-                    qrCV.put(EventContract.QrEntry.COLUMN_NAME_NAME_NL, qr.getString("name_nl"));
-                    qrCV.put(EventContract.QrEntry.COLUMN_NAME_DESCRIPTION, qr.getString("description"));
-                    qrCV.put(EventContract.QrEntry.COLUMN_NAME_DESCRIPTION_NL, qr.getString("description_nl"));
-                    qrCV.put(EventContract.QrEntry.COLUMN_NAME_IMAGE, qr.getString("image"));
-                    qrCVs[i] = qrCV;
-                }
-                getContext().getContentResolver().delete(EventContract.QrEntry.CONTENT_URI, null, null);
-                getContext().getContentResolver().bulkInsert(EventContract.QrEntry.CONTENT_URI, qrCVs);
-                getContext().getContentResolver().notifyChange(EventContract.QrEntry.CONTENT_URI, null);
-            }
             //</editor-fold>
         } catch (JSONException e) {
             Log.e("Convention", "Error in SyncAdapter.onPerformSync, ConventionData JSON ", e);

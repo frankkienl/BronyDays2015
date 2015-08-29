@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,13 +14,10 @@ import android.view.MenuItem;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.plus.Plus;
 
 import org.acra.ACRA;
 
 import nl.frankkie.bronydays2015.util.GcmUtil;
-import nl.frankkie.bronydays2015.util.GoogleApiUtil;
 import nl.frankkie.bronydays2015.util.Util;
 
 
@@ -47,10 +43,7 @@ import nl.frankkie.bronydays2015.util.Util;
  */
 public class EventListActivity extends AppCompatActivity implements
         EventListFragment.Callbacks, 
-        NavigationDrawerFragment.NavigationDrawerCallbacks, 
-        GoogleApiClient.ConnectionCallbacks, 
-        GoogleApiClient.OnConnectionFailedListener, 
-        GoogleApiUtil.GiveMeGoogleApiClient {
+        NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 
 //<editor-fold desc="ActionBar Stuff">
@@ -116,78 +109,6 @@ public class EventListActivity extends AppCompatActivity implements
     }
     //</editor-fold>
 
-    //<editor-fold desc="Silent Google Play Games login">
-    private GoogleApiClient mGoogleApiClient;
-
-    public void initGoogleApi() {
-        mGoogleApiClient = buildGoogleApiClient();
-    }
-
-    private GoogleApiClient buildGoogleApiClient() {
-        return new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Plus.API)
-                .addScope(Plus.SCOPE_PLUS_LOGIN)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .build();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        try {
-            mGoogleApiClient.connect();
-        } catch (Exception e) {
-            ACRA.getErrorReporter().handleException(e);
-        }
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        try {
-            if (mGoogleApiClient.isConnected()) {
-                mGoogleApiClient.disconnect();
-            }
-        } catch (Exception e) {
-            ACRA.getErrorReporter().handleException(e);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data); //send to fragment
-        try {
-            mGoogleApiClient.connect();
-        } catch (Exception e) {
-            ACRA.getErrorReporter().handleException(e);
-        }
-    }
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        //empty, add achievements later.
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        //silently ignore errors
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        //silently ignore errors
-    }
-
-    @Override
-    public GoogleApiClient getGoogleApiClient() {
-        return mGoogleApiClient;
-    }
-    //</editor-fold>
-
-
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -216,8 +137,6 @@ public class EventListActivity extends AppCompatActivity implements
         }
         //Sync ContentProvider using SyncAdapter
         Util.syncConventionData(this);
-
-        initGoogleApi();
     }
 
     @Override

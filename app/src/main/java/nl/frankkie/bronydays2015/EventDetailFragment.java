@@ -27,11 +27,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.games.Games;
 import com.koushikdutta.ion.Ion;
 
 import nl.frankkie.bronydays2015.data.EventContract;
-import nl.frankkie.bronydays2015.util.GoogleApiUtil;
 import nl.frankkie.bronydays2015.util.Util;
 
 /**
@@ -86,7 +84,6 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
     //workaround for when onLoadFinished is called before actionbar is loaded
     boolean isLoadingFinished = false;
     boolean isLoadingFinished_isFavorite = false;
-    private GoogleApiUtil.GiveMeGoogleApiClient apiClientGetter;
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -192,13 +189,6 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
             mStarMenuItem.setChecked(true);
             mStarMenuItem.setTitle(R.string.action_star_remove);
             mStarMenuItem.setIcon(android.R.drawable.btn_star_big_on);
-            //Google Play Games
-            try {
-                Games.Achievements.increment(apiClientGetter.getGoogleApiClient(), getActivity().getString(R.string.achievement_personal_schedule), 1);
-            } catch(IllegalStateException e){
-                //This happens when GoogleApiClient is not connected yet.
-                //Ignore this error, user gets Achievement next time.
-            }
         } else {
             mStarMenuItem.setChecked(false);
             mStarMenuItem.setTitle(R.string.action_star_add);
@@ -280,8 +270,6 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
         if (getArguments().containsKey(ARG_ITEM_SHARETITLE)) {
             mShareTitle = getArguments().getString(ARG_ITEM_SHARETITLE);
         }
-
-        apiClientGetter = (GoogleApiUtil.GiveMeGoogleApiClient) getActivity();
     }
 
     @Override

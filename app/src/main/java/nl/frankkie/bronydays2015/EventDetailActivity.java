@@ -7,15 +7,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.plus.Plus;
-
-import org.acra.ACRA;
-
-import nl.frankkie.bronydays2015.util.GoogleApiUtil;
-
 
 /**
  * An activity representing a single Event detail screen. This
@@ -26,81 +17,7 @@ import nl.frankkie.bronydays2015.util.GoogleApiUtil;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link EventDetailFragment}.
  */
-public class EventDetailActivity extends ActionBarActivity implements
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiUtil.GiveMeGoogleApiClient {
-
-    //<editor-fold desc="Silent Google Play Games login">
-    private GoogleApiClient mGoogleApiClient;
-
-    public void initGoogleApi() {
-        mGoogleApiClient = buildGoogleApiClient();
-    }
-
-    private GoogleApiClient buildGoogleApiClient() {
-        return new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Plus.API)
-                .addScope(Plus.SCOPE_PLUS_LOGIN)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .build();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        try {
-            mGoogleApiClient.connect();
-        } catch (Exception e) {
-            ACRA.getErrorReporter().handleException(e);
-        }
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        try {
-            if (mGoogleApiClient.isConnected()) {
-                mGoogleApiClient.disconnect();
-            }
-        } catch (Exception e) {
-            ACRA.getErrorReporter().handleException(e);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data); //send to fragment
-        try {
-            mGoogleApiClient.connect();
-        } catch (Exception e) {
-            ACRA.getErrorReporter().handleException(e);
-        }
-    }
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        //empty, add achievements later.
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        //silently ignore errors
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        //silently ignore errors
-    }
-
-    @Override
-    public GoogleApiClient getGoogleApiClient() {
-        return mGoogleApiClient;
-    }
-    //</editor-fold>
+public class EventDetailActivity extends ActionBarActivity {
 
 
     @Override
@@ -137,8 +54,6 @@ public class EventDetailActivity extends ActionBarActivity implements
                     .add(R.id.event_detail_container, fragment)
                     .commit();
         }
-
-        initGoogleApi();
     }
 
     @Override

@@ -33,9 +33,7 @@ import java.util.Date;
 
 import nl.frankkie.bronydays2015.AboutActivity;
 import nl.frankkie.bronydays2015.EventListActivity;
-import nl.frankkie.bronydays2015.LoginActivity;
 import nl.frankkie.bronydays2015.MapActivity;
-import nl.frankkie.bronydays2015.QrHuntActivity;
 import nl.frankkie.bronydays2015.R;
 import nl.frankkie.bronydays2015.ScheduleActivity;
 
@@ -107,8 +105,6 @@ public class Util {
     public static final int SYNCFLAG_CONVENTION_DATA = 1;
     public static final int SYNCFLAG_DOWNLOAD_FAVORITES = 2;
     public static final int SYNCFLAG_UPLOAD_FAVORITES = 4;
-    public static final int SYNCFLAG_UPLOAD_QRFOUND = 8;
-    public static final int SYNCFLAG_DOWNLOAD_QRFOUND = 16; //for sync between devices
 
     public static void syncData(Context context, int syncWhatFlags) {
         //Create Account needed for SyncAdapter
@@ -128,11 +124,6 @@ public class Util {
     public static void sendFavoriteDelta(Context context, String id, boolean isFavorite) {
         //This does send all favorites, not just a delta. because im lazy
         Util.syncData(context, Util.SYNCFLAG_UPLOAD_FAVORITES);
-    }
-
-    public static void sendQrFound(Context context){
-        //Upload found QR-codes.
-        Util.syncData(context, Util.SYNCFLAG_UPLOAD_QRFOUND);
     }
 
     public static void showNotification(Context context, String message) {

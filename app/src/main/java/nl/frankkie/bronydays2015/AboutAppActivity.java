@@ -45,19 +45,6 @@ public class AboutAppActivity extends ActionBarActivity {
 
         WebView wv = (WebView) findViewById(R.id.aboutapp_webview);
         wv.loadUrl("file:///android_asset/licences.html");
-        
-        //Easter Egg stuff
-        ImageView image = (ImageView) findViewById(R.id.aboutapp_frankkienl_image);
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timesClicked++;
-                if (timesClicked >= 10){
-                    Intent i = new Intent(AboutAppActivity.this,EasterEggActivity.class);
-                    startActivity(i);
-                }
-            }
-        });
     }
 
     @Override

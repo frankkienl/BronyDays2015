@@ -56,7 +56,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AboutActivity" />            
         </activity>
-        <activity android:name=".EasterEggActivity"></activity>
+
         <!--
         Don't reload WebView onConfigChange.
         http://developer.android.com/reference/android/webkit/WebView.html
@@ -69,18 +69,6 @@
         <activity
             android:name=".ScheduleActivity"
             android:label="@string/title_activity_schedule"></activity>
-        
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".QrHuntActivity">
-        <!-- hwcon://qr?key=val
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="hwcon" android:host="qr" />
-            </intent-filter>
-        //-->
-        </activity>
 
         <provider
             android:name="nl.frankkie.bronydays2015.data.EventProvider"
