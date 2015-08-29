@@ -63,36 +63,28 @@ public class Util {
         from.finish();
     }
 
+    public static final int DRAWER_SCHEDULE=0,DRAWER_BROWSE=1,DRAWER_MAP=2,DRAWER_ABOUT=3;
+
     public static void navigateFromNavDrawer(Activity thisAct, int position) {
         switch (position) {
-            case 0: {
+            case DRAWER_SCHEDULE: {
                 if (!(thisAct instanceof ScheduleActivity))
                     navigateFromNavDrawer(thisAct, new Intent(thisAct, ScheduleActivity.class));
                 break;
             }
-            case 1: {
+            case DRAWER_BROWSE: {
                 //Don't restart current activity
                 if (!(thisAct instanceof EventListActivity))
                     //Not instanceof, see: http://stackoverflow.com/questions/9068150/best-way-to-negate-an-instanceof
                     navigateFromNavDrawer(thisAct, new Intent(thisAct, EventListActivity.class));
                 break;
             }
-            case 2: {
+            case DRAWER_MAP: {
                 if (!(thisAct instanceof MapActivity))
                     navigateFromNavDrawer(thisAct, new Intent(thisAct, MapActivity.class));
                 break;
             }
-            case 3: {
-                if (!(thisAct instanceof QrHuntActivity))
-                    navigateFromNavDrawer(thisAct, new Intent(thisAct, QrHuntActivity.class));
-                break;
-            }
-            case 4: {
-                if (!(thisAct instanceof LoginActivity))
-                    navigateFromNavDrawer(thisAct, new Intent(thisAct, LoginActivity.class));
-                break;
-            }
-            case 5: {
+            case DRAWER_ABOUT: {
                 if (!(thisAct instanceof AboutActivity))
                     navigateFromNavDrawer(thisAct, new Intent(thisAct, AboutActivity.class));
                 break;
