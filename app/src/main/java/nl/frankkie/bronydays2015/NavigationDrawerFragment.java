@@ -105,7 +105,6 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{                        
                         getString(R.string.title_section_schedule),
-                        getString(R.string.title_section_browse),
                         getString(R.string.title_section_map),
                         getString(R.string.title_section_about),
                 }));

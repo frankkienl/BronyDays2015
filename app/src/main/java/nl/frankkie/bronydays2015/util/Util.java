@@ -32,7 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nl.frankkie.bronydays2015.AboutActivity;
-import nl.frankkie.bronydays2015.EventListActivity;
 import nl.frankkie.bronydays2015.MapActivity;
 import nl.frankkie.bronydays2015.R;
 import nl.frankkie.bronydays2015.ScheduleActivity;
@@ -61,20 +60,13 @@ public class Util {
         from.finish();
     }
 
-    public static final int DRAWER_SCHEDULE=0,DRAWER_BROWSE=1,DRAWER_MAP=2,DRAWER_ABOUT=3;
+    public static final int DRAWER_SCHEDULE=0,DRAWER_MAP=1,DRAWER_ABOUT=2;
 
     public static void navigateFromNavDrawer(Activity thisAct, int position) {
         switch (position) {
             case DRAWER_SCHEDULE: {
                 if (!(thisAct instanceof ScheduleActivity))
                     navigateFromNavDrawer(thisAct, new Intent(thisAct, ScheduleActivity.class));
-                break;
-            }
-            case DRAWER_BROWSE: {
-                //Don't restart current activity
-                if (!(thisAct instanceof EventListActivity))
-                    //Not instanceof, see: http://stackoverflow.com/questions/9068150/best-way-to-negate-an-instanceof
-                    navigateFromNavDrawer(thisAct, new Intent(thisAct, EventListActivity.class));
                 break;
             }
             case DRAWER_MAP: {
@@ -138,7 +130,7 @@ public class Util {
         //The docs are not clear about how to add sound, StackOverflow to the rescue!
         builder.setSound(Uri.parse("android.resource://nl.frankkie.bronydays2015/raw/yay"));
         builder.setSmallIcon(R.drawable.ic_stat_notification_heart);
-        Intent i = new Intent(context, EventListActivity.class);
+        Intent i = new Intent(context, ScheduleActivity.class);
         PendingIntent pi = PendingIntent.getActivity(context, 0, i, 0);
         builder.setContentIntent(pi);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
