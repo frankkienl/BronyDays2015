@@ -188,7 +188,9 @@ public class EventListActivity extends AppCompatActivity implements
         int flag = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if (flag != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(flag)) {
-                GooglePlayServicesUtil.showErrorNotification(flag, this);
+                //We ignore it when Google Play Services is not installed.
+                //They won't get GCM's, their loss. Does not matter that much.
+                //GooglePlayServicesUtil.showErrorNotification(flag, this);
             } else {
                 Log.e(getString(R.string.app_name), "Google Play Services not supported.");
                 ACRA.getErrorReporter().handleException(new RuntimeException("Google Play Services not supported."));
