@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="title_event_detail">Event Detail</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_map">Map</string>
