@@ -1,6 +1,5 @@
 package nl.frankkie.bronydays2015.data;
 
-import android.app.usage.UsageEvents;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -65,6 +64,7 @@ public class EventProvider extends ContentProvider {
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     SQLiteOpenHelper mOpenHelper;
 
+    private static final SQLiteQueryBuilder sEventsWithLocationAndFavoriteQueryBuilder;
     private static final SQLiteQueryBuilder sEventWithLocationQueryBuilder;
     private static final SQLiteQueryBuilder sSpeakersWithEventQueryBuilder;
     private static final SQLiteQueryBuilder sFavoriteEventsWithLocationQueryBuilder;
@@ -73,7 +73,7 @@ public class EventProvider extends ContentProvider {
     static {
         // Sunshine combines location with weather, this app will combine event and location
         sEventWithLocationQueryBuilder = new SQLiteQueryBuilder();
-        // Lets hope 'INNER JOIN' does what I think it does.
+        // Lets hope 'JOIN' does what I think it does.
         // I should have paid better attention at Database-lessons at school... >.>
         //SELECT event.title, location.name FROM event JOIN location ON event.location_id = location._id LEFT JOIN favorites ON event._id = favorites.item_id WHERE event._id = 3
         sEventWithLocationQueryBuilder.setTables(
@@ -88,6 +88,26 @@ public class EventProvider extends ContentProvider {
                         "." + EventContract.EventEntry._ID +
                         " = " + EventContract.FavoritesEntry.TABLE_NAME +
                         "." + EventContract.FavoritesEntry.COLUMN_NAME_ITEM_ID
+        );
+        // Get a list of all Events, with Location and Favorite-status, to show in Schedule
+        sEventsWithLocationAndFavoriteQueryBuilder = new SQLiteQueryBuilder();
+        /*
+        SELECT event.*, location.name as 'location_name', favorites._id as 'favorite_id'
+        FROM event
+        LEFT JOIN location ON event.location_id = location._id
+        LEFT JOIN favorites ON event._id = favorites.item_id
+         */
+        //80 columns is too small for SQL in source-code. Deal with it.
+        sEventsWithLocationAndFavoriteQueryBuilder.setTables(
+                EventContract.EventEntry.TABLE_NAME
+                        + " LEFT JOIN " + EventContract.LocationEntry.TABLE_NAME + " ON "
+                        + EventContract.EventEntry.TABLE_NAME + "."
+                        + EventContract.EventEntry.COLUMN_NAME_LOCATION_ID + " = "
+                        + EventContract.LocationEntry.TABLE_NAME + "." + EventContract.LocationEntry._ID
+                        + " LEFT JOIN " + EventContract.FavoritesEntry.TABLE_NAME + " ON "
+                        + EventContract.EventEntry.TABLE_NAME + "." + EventContract.EventEntry._ID
+                        + " = " + EventContract.FavoritesEntry.TABLE_NAME + "."
+                        + EventContract.FavoritesEntry.COLUMN_NAME_ITEM_ID
         );
         // Get Speakers from Event
         sSpeakersWithEventQueryBuilder = new SQLiteQueryBuilder();
@@ -164,7 +184,8 @@ public class EventProvider extends ContentProvider {
             case EVENT: {
                 //List of Events
                 retCursor = mOpenHelper.getReadableDatabase().query(
-                        EventContract.EventEntry.TABLE_NAME,
+                        //EventContract.EventEntry.TABLE_NAME,
+                        sEventsWithLocationAndFavoriteQueryBuilder.getTables(),
                         projection,
                         selection,
                         selectionArgs,
@@ -622,9 +643,9 @@ public class EventProvider extends ContentProvider {
                 db.beginTransaction();
                 int returnInt = 0; // number of rows added
                 try {
-                    for (ContentValues value : values){
+                    for (ContentValues value : values) {
                         long id = db.insert(EventContract.QrEntry.TABLE_NAME, null, value);
-                        if (id != -1L){
+                        if (id != -1L) {
                             returnInt++;
                         }
                     }
@@ -670,7 +691,7 @@ public class EventProvider extends ContentProvider {
             }
             case QR: {
                 numberOfRowsDeleted = db.delete(EventContract.QrEntry.TABLE_NAME, selection, selectionArgs);
-                break;                
+                break;
             }
             case QR_FOUND: {
                 numberOfRowsDeleted = db.delete(EventContract.QrFoundEntry.TABLE_NAME, selection, selectionArgs);

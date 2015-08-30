@@ -3,7 +3,13 @@
     android:orientation="vertical"
     android:background="@drawable/touch_selector"
     android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:layout_height="match_parent">
+    <!--
+    This:
+    android:descendantFocusability="blocksDescendants"
+    is needed, otherwise the star gets the onClick instead of the row.
+    //-->
     <!--
     Added LinearLayout as Root-View to draw a background color.
     FrameLayout.setBackground(Drawable) only works on api16+
@@ -38,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/placeholder_short" />
             <CheckBox
+                android:id="@+id/schedule_listview_item_star"
                 style="?android:attr/starStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

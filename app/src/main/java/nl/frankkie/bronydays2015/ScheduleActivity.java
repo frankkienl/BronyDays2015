@@ -24,11 +24,11 @@ import nl.frankkie.bronydays2015.util.Util;
  * item details side-by-side using two vertical panes.
  * <p/>
  * The activity makes heavy use of fragments. The list of items is a
- * {@link EventListFragment} and the item details
+ * {@link ScheduleListFragment} and the item details
  * (if present) is a {@link EventDetailFragment}.
  * <p/>
  * This activity also implements the required
- * {@link EventListFragment.Callbacks} interface
+ * {@link ScheduleListFragment.Callbacks} interface
  * to listen for item selections.
  * <p/>
  * To use ActionBar and Fragments, extend from ActionBarActivity,
@@ -136,10 +136,13 @@ public class ScheduleActivity extends ActionBarActivity implements
         }
 
         initToolbar();
+
+        //Sync ContentProvider using SyncAdapter
+        Util.syncConventionData(this);
     }
 
     /**
-     * Callback method from {@link EventListFragment.Callbacks}
+     * Callback method from {@link ScheduleListFragment.Callbacks}
      * indicating that the item with the given ID was selected.
      */
     @Override

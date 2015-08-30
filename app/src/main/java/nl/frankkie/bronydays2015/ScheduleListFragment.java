@@ -1,6 +1,7 @@
 package nl.frankkie.bronydays2015;
 
 import android.app.Activity;
+import android.app.usage.UsageEvents;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,6 +57,7 @@ public class ScheduleListFragment extends ListFragment implements LoaderManager.
     public static final int COL_IMAGE = 3;
     public static final int COL_COLOR = 4;
     public static final int COL_LOCATION = 5;
+    public static final int COL_FAVORITE_ID = 6;
 
     public static final String[] SCHEDULE_COLUMNS = {
             EventContract.EventEntry.TABLE_NAME + "." + EventContract.EventEntry._ID,
@@ -63,13 +65,14 @@ public class ScheduleListFragment extends ListFragment implements LoaderManager.
             EventContract.EventEntry.COLUMN_NAME_START_TIME,
             EventContract.EventEntry.COLUMN_NAME_IMAGE,
             EventContract.EventEntry.COLUMN_NAME_COLOR,
-            EventContract.LocationEntry.COLUMN_NAME_NAME
+            EventContract.LocationEntry.COLUMN_NAME_NAME,
+            EventContract.FavoritesEntry.TABLE_NAME + "." + EventContract.FavoritesEntry._ID
     };
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        //Uri uri = Uri.parse(EventContract.EventEntry.CONTENT_URI);
-        Uri uri = Uri.parse("content://nl.frankkie.bronydays2015/favorites/event");
+        Uri uri = EventContract.EventEntry.CONTENT_URI;
+        //Uri uri = Uri.parse("content://nl.frankkie.bronydays2015/favorites/event");
         String sortOrder = EventContract.EventEntry.COLUMN_NAME_START_TIME + " ASC";
         CursorLoader cl = new CursorLoader(getActivity(), uri, SCHEDULE_COLUMNS, null, null, sortOrder);
         return cl;

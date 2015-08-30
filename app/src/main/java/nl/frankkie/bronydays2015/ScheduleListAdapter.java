@@ -6,6 +6,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class ScheduleListAdapter extends CursorAdapter {
         viewHolder.timeView.setText(Util.getDataTimeString(time));
         viewHolder.locationView.setText(cursor.getString(ScheduleListFragment.COL_LOCATION));
         //no image or color in Schedule
+        viewHolder.starView.setChecked((cursor.getInt(ScheduleListFragment.COL_FAVORITE_ID) != 0));
     }
 
     public static class ViewHolder {
@@ -49,12 +51,14 @@ public class ScheduleListAdapter extends CursorAdapter {
         public final TextView titleView;
         public final TextView timeView;
         public final TextView locationView;
+        public final CheckBox starView;
 
         public ViewHolder(View view) {
             imageView = (ImageView) view.findViewById(R.id.schedule_listview_item_backgroudimage);
             titleView = (TextView) view.findViewById(R.id.schedule_listview_item_eventname);
             timeView = (TextView) view.findViewById(R.id.schedule_listview_item_eventtime);
             locationView = (TextView) view.findViewById(R.id.schedule_listview_item_eventlocation);
+            starView = (CheckBox) view.findViewById(R.id.schedule_listview_item_star);
         }
     }
 }
