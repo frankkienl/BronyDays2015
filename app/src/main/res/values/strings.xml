@@ -18,7 +18,7 @@
     <string name="action_star_add">Add to favorites</string>
     <string name="action_star_remove">Remove from favorites</string>
 
-    <string name="share_text">I\'ll go to the event \'%s\' during HWcon 2015! #hwcon2015</string>
+    <string name="share_text">I\'ll go to the event \'%s\' during BronyDays 2015! #bronydays2015</string>
 
     <string name="about_mail_header">Mail</string>
     <string name="about_date_header">Date</string>
@@ -31,7 +31,7 @@
     <string name="label_speakers">Speakers</string>
 
     <string name="star_tip_title">Tip</string>
-    <string name="star_tip_message">Click the Star to add this Event to \'My Schedule\'. \nDo this for all Events you intend to attend.\n\nLogin with Google+ to automatically sync between all your devices.</string>
+    <string name="star_tip_message">Click the Star to add this Event to \'My Schedule\'. \nDo this for all Events you intend to attend.</string>
     <!--
         Specific for this convention
         Change these when using for another convention
@@ -62,33 +62,8 @@
     <string name="aboutapp_frankkienl_description">This app has been made by FrankkieNL \nFor more apps see: \nhttp://frankkie.nl/</string>
     <string name="title_section_qr_hunt">QR Hunt</string>
     <string name="title_section_login">Login/Logout</string>
-    <!-- Google Play Games //-->
-    <string name="google_play_games_app_id" translatable="false">445536900909</string>
-    <string name="achievement_ready_to_go" translatable="false">CgkIra7G4PsMEAIQAA</string>
-    <string name="achievement_personal_schedule" translatable="false">CgkIra7G4PsMEAIQAQ</string>
-    <string name="achievement_its_a_start" translatable="false">CgkIra7G4PsMEAIQAg</string>
-    <string name="achievement_easter_egg" translatable="false">CgkIra7G4PsMEAIQAw</string>
-    <string name="achievement_find_5" translatable="false">CgkIra7G4PsMEAIQBA</string>
-    <string name="sign_out">Sign out</string>
-    <string name="view_achievements">View Achievements</string>
-    <string name="qrlist_empty_placeholder">QR code list is empty</string>
-    <string name="qrlist_empty_names_hidden">No QR codes found yet!</string>
-    <string name="qr_scan">Scan</string>
-    <string name="barcodescanner_not_installed_title">Install Barcode Scanner</string>
-    <string name="barcodescanner_not_installed_message">This application requires Barcode Scanner. Would you like to install it?\n(Required to participate in the QR Hunt)</string>
-    <string name="qr_not_on_list">QR Code not on the list!</string>
-    <string name="qr_found">Good work! You have found a QR Code.</string>
-    <string name="qr_found_already">You have found this QR Code before. Go look for another one!</string>
     <string name="about_view_map">View on Map</string>
-    <string name="qr_place_in_rectangle">Place QR code in rectangle to scan.</string>
-    <string name="qr_login_required_title">Login required</string>
-    <string name="qr_login_required_message">Its required that you sign in using Google Play Games to participate in the QR Hunt.</string>
-    <string name="qr_tip_message">Search the hidden QR codes, and scan them with your Camera of your device. Find all QR codes!</string>
-    <string name="logging_in">Logging in...</string>
-    <string name="google_play_games_error">Error with Google Play Games, please restart the app.</string>
-    <string name="ask_nickname">What\'s your nickname?</string>
     <string name="browse_empty">Please wait until data is synced...</string>
-    <string name="login_details">\nLogin to sync to you schedule between all you devices.\n\nLogging in is required to participate in the QR Hunt!\n\nUse the button below to login.</string>
     <string name="about_date_details">October 31st - November 1st 2015</string>
 
 </resources>
