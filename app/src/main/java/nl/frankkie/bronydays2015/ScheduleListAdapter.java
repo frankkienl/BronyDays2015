@@ -35,10 +35,16 @@ public class ScheduleListAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
-        viewHolder.titleView.setText(cursor.getString(ScheduleListFragment.COL_TITLE));
+        if (!context.getString(R.string.current_lang).equals("FR")) {
+            //Set in correct language
+            viewHolder.titleView.setText(cursor.getString(ScheduleListFragment.COL_TITLE));
+            viewHolder.locationView.setText(cursor.getString(ScheduleListFragment.COL_LOCATION));
+        } else {
+            viewHolder.titleView.setText(cursor.getString(ScheduleListFragment.COL_TITLE_FR));
+            viewHolder.locationView.setText(cursor.getString(ScheduleListFragment.COL_LOCATION_FR));
+        }
         long time = cursor.getLong(ScheduleListFragment.COL_TIME);
         viewHolder.timeView.setText(Util.getDataTimeString(time));
-        viewHolder.locationView.setText(cursor.getString(ScheduleListFragment.COL_LOCATION));
         //no image or color in Schedule
         viewHolder.starView.setChecked((cursor.getInt(ScheduleListFragment.COL_FAVORITE_ID) != 0));
     }

@@ -53,19 +53,19 @@ public class ScheduleListFragment extends ListFragment implements LoaderManager.
 
     public static final int COL_ID = 0;
     public static final int COL_TITLE = 1;
-    public static final int COL_TIME = 2;
-    public static final int COL_IMAGE = 3;
-    public static final int COL_COLOR = 4;
-    public static final int COL_LOCATION = 5;
+    public static final int COL_TITLE_FR = 2;
+    public static final int COL_TIME = 3;
+    public static final int COL_LOCATION = 4;
+    public static final int COL_LOCATION_FR = 5;
     public static final int COL_FAVORITE_ID = 6;
 
     public static final String[] SCHEDULE_COLUMNS = {
             EventContract.EventEntry.TABLE_NAME + "." + EventContract.EventEntry._ID,
             EventContract.EventEntry.COLUMN_NAME_TITLE,
+            EventContract.EventEntry.COLUMN_NAME_TITLE_FR,
             EventContract.EventEntry.COLUMN_NAME_START_TIME,
-            EventContract.EventEntry.COLUMN_NAME_IMAGE,
-            EventContract.EventEntry.COLUMN_NAME_COLOR,
             EventContract.LocationEntry.COLUMN_NAME_NAME,
+            EventContract.LocationEntry.COLUMN_NAME_NAME_FR,
             EventContract.FavoritesEntry.TABLE_NAME + "." + EventContract.FavoritesEntry._ID
     };
 

@@ -65,5 +65,6 @@
     <string name="about_view_map">View on Map</string>
     <string name="browse_empty">Please wait until data is synced...</string>
     <string name="about_date_details">October 31st - November 1st 2015</string>
+    <string name="current_lang">EN</string>
 
 </resources>

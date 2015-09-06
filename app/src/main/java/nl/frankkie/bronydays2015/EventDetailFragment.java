@@ -34,7 +34,7 @@ import nl.frankkie.bronydays2015.util.Util;
 
 /**
  * A fragment representing a single Event detail screen.
- * This fragment is either contained in a {@link nl.frankkie.bronydays2015.EventListActivity} or {@link nl.frankkie.bronydays2015.ScheduleActivity}
+ * This fragment is either contained in a {@link nl.frankkie.bronydays2015.ScheduleActivity} or {@link nl.frankkie.bronydays2015.ScheduleActivity}
  * in two-pane mode (on tablets) or a {@link nl.frankkie.bronydays2015.EventDetailActivity}
  * on handsets.
  */
@@ -45,23 +45,27 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
     public static final String[] EVENT_COLUMNS = {
             EventContract.EventEntry.TABLE_NAME + "." + EventContract.EventEntry._ID,
             EventContract.EventEntry.COLUMN_NAME_TITLE,
+            EventContract.EventEntry.COLUMN_NAME_TITLE_FR,
             EventContract.EventEntry.TABLE_NAME + "." + EventContract.EventEntry.COLUMN_NAME_DESCRIPTION,
+            EventContract.EventEntry.TABLE_NAME + "." + EventContract.EventEntry.COLUMN_NAME_DESCRIPTION_FR,
             EventContract.EventEntry.COLUMN_NAME_KEYWORDS,
             EventContract.EventEntry.COLUMN_NAME_START_TIME,
             EventContract.EventEntry.COLUMN_NAME_END_TIME,
-            EventContract.EventEntry.COLUMN_NAME_COLOR,
             EventContract.EventEntry.COLUMN_NAME_IMAGE,
             EventContract.LocationEntry.TABLE_NAME + "." + EventContract.LocationEntry._ID,
             EventContract.LocationEntry.COLUMN_NAME_NAME,
+            EventContract.LocationEntry.COLUMN_NAME_NAME_FR,
             EventContract.LocationEntry.TABLE_NAME + "." + EventContract.LocationEntry.COLUMN_NAME_DESCRIPTION,
+            EventContract.LocationEntry.TABLE_NAME + "." + EventContract.LocationEntry.COLUMN_NAME_DESCRIPTION_FR,
             EventContract.LocationEntry.COLUMN_NAME_FLOOR,
             EventContract.FavoritesEntry.TABLE_NAME + "." + EventContract.FavoritesEntry._ID //If filled, its starred.
     };
     public static final String[] SPEAKERS_COLUMNS = {
             EventContract.SpeakerEntry.TABLE_NAME + "." + EventContract.SpeakerEntry._ID,
             EventContract.SpeakerEntry.TABLE_NAME + "." + EventContract.SpeakerEntry.COLUMN_NAME_NAME,
+            EventContract.SpeakerEntry.TABLE_NAME + "." + EventContract.SpeakerEntry.COLUMN_NAME_NAME_FR,
             EventContract.SpeakerEntry.TABLE_NAME + "." + EventContract.SpeakerEntry.COLUMN_NAME_DESCRIPTION,
-            EventContract.SpeakerEntry.TABLE_NAME + "." + EventContract.SpeakerEntry.COLUMN_NAME_COLOR,
+            EventContract.SpeakerEntry.TABLE_NAME + "." + EventContract.SpeakerEntry.COLUMN_NAME_DESCRIPTION_FR,
             EventContract.SpeakerEntry.TABLE_NAME + "." + EventContract.SpeakerEntry.COLUMN_NAME_IMAGE
     };
 
@@ -121,27 +125,31 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
         if (cursorLoader.getId() == EVENT_DETAIL_LOADER) {
             if (data != null && data.moveToFirst()) {
                 int eventId = data.getInt(0);
-                mTitle.setText(data.getString(1));
-                String descriptionString = data.getString(2);
+                String descriptionString = data.getString(3);
+                if (!getString(R.string.current_lang).equals("FR")) {
+                    mTitle.setText(data.getString(1));
+                } else {
+                    mTitle.setText(data.getString(2));
+                    descriptionString = data.getString(4);
+                }
                 mDescription.setText(Html.fromHtml(descriptionString));
-                mKeywords.setText(data.getString(3));
-                mStartTime.setText(Util.getDataTimeString(data.getLong(4)));
-                mEndTime.setText(Util.getDataTimeString(data.getLong(5)));
-                String color = data.getString(6);
-                String image = data.getString(7);
+                mKeywords.setText(data.getString(5));
+                mStartTime.setText(Util.getDataTimeString(data.getLong(6)));
+                mEndTime.setText(Util.getDataTimeString(data.getLong(7)));
+                String image = data.getString(8);
                 Ion.with(this)
                         .load(image)
                         .withBitmap()
                         .error(R.drawable.transparentpixel)
                         .placeholder(R.drawable.transparentpixel)
                         .intoImageView(mImage);
-                int locationId = data.getInt(8);
-                mLocation.setText(data.getString(9));
-                mLocationDescription.setText(data.getString(10));
-                int floor = data.getInt(11);
+                int locationId = data.getInt(9);
+                mLocation.setText(data.getString(10));
+                mLocationDescription.setText(data.getString(11));
+                int floor = data.getInt(12);
                 mLocationFloor.setText(getFloorName(floor));
                 //Star
-                handleStar(!data.isNull(12));
+                handleStar(!data.isNull(13));
             }
         } else if (cursorLoader.getId() == EVENT_SPEAKERS_LOADER) {
             //List of speakers of this Event.
@@ -159,12 +167,15 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
                 TextView sDescription = (TextView) speakerItem.findViewById(R.id.event_detail_speaker_item_description);
                 ImageView sImageView = (ImageView) speakerItem.findViewById(R.id.event_detail_speaker_item_image);
                 sName.setText(data.getString(1));
-                String descriptionString = data.getString(2);
+                String descriptionString = data.getString(3);
+                if (getString(R.string.current_lang).equals("FR")){
+                    sName.setText(data.getString(2));
+                    descriptionString = data.getString(4);
+                }
                 //descriptionString = descriptionString.replace("\\n","\n");
                 sDescription.setText(Html.fromHtml(descriptionString));
-                String sImageUrl = data.getString(4);
+                String sImageUrl = data.getString(5);
                 mSpeakersContainer.addView(speakerItem);
-
                 //Load image
                 Ion.with(this)
                         .load(sImageUrl)
@@ -343,7 +354,5 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
                     EventContract.FavoritesEntry.COLUMN_NAME_TYPE + " = '" + EventContract.FavoritesEntry.TYPE_EVENT +
                             "' AND " + EventContract.FavoritesEntry.COLUMN_NAME_ITEM_ID + " = ?", new String[]{mId});
         }
-        //sendToServer, after persisting in local database
-        Util.sendFavoriteDelta(getActivity(), mId, checked);
     }
 }
