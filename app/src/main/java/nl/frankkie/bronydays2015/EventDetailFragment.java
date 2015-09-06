@@ -125,12 +125,11 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
         if (cursorLoader.getId() == EVENT_DETAIL_LOADER) {
             if (data != null && data.moveToFirst()) {
                 int eventId = data.getInt(0);
-                String descriptionString = data.getString(3);
+                mTitle.setText(data.getString(2));
+                String descriptionString = data.getString(4);
                 if (!getString(R.string.current_lang).equals("FR")) {
                     mTitle.setText(data.getString(1));
-                } else {
-                    mTitle.setText(data.getString(2));
-                    descriptionString = data.getString(4);
+                    descriptionString = data.getString(3);
                 }
                 mDescription.setText(Html.fromHtml(descriptionString));
                 mKeywords.setText(data.getString(5));
@@ -144,12 +143,18 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
                         .placeholder(R.drawable.transparentpixel)
                         .intoImageView(mImage);
                 int locationId = data.getInt(9);
-                mLocation.setText(data.getString(10));
-                mLocationDescription.setText(data.getString(11));
-                int floor = data.getInt(12);
+
+                mLocation.setText(data.getString(11));
+                mLocationDescription.setText(data.getString(13));
+                if (!getString(R.string.current_lang).equals("FR")) {
+                    mLocation.setText(data.getString(10));
+                    mLocationDescription.setText(data.getString(12));
+                }
+
+                int floor = data.getInt(14);
                 mLocationFloor.setText(getFloorName(floor));
                 //Star
-                handleStar(!data.isNull(13));
+                handleStar(!data.isNull(15));
             }
         } else if (cursorLoader.getId() == EVENT_SPEAKERS_LOADER) {
             //List of speakers of this Event.
@@ -168,7 +173,7 @@ public class EventDetailFragment extends Fragment implements LoaderManager.Loade
                 ImageView sImageView = (ImageView) speakerItem.findViewById(R.id.event_detail_speaker_item_image);
                 sName.setText(data.getString(1));
                 String descriptionString = data.getString(3);
-                if (getString(R.string.current_lang).equals("FR")){
+                if (getString(R.string.current_lang).equals("FR")) {
                     sName.setText(data.getString(2));
                     descriptionString = data.getString(4);
                 }

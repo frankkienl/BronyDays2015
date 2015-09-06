@@ -49,6 +49,7 @@
                 <TextView
                     android:id="@+id/event_detail_label_keywords"
                     style="@style/textStyle_header"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_keywords" />
@@ -56,6 +57,7 @@
                 <TextView
                     android:id="@+id/event_detail_keywords"
                     style="@style/textStyle_details"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
