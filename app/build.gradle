@@ -30,7 +30,5 @@ dependencies {
     //ion, a libray made by Koush for loading images from the internet into ImageView's.
     //https://github.com/koush/ion#get-ion
     compile 'com.koushikdutta.ion:ion:2.+'
-    //Google Play Serivces, needed for GCM (Push Notifications)
-    compile 'com.google.android.gms:play-services-gcm:7.5.0'
 }
 

@@ -95,8 +95,6 @@ public class Util {
 
     public static final int SYNCFLAG_NONE = 0;
     public static final int SYNCFLAG_CONVENTION_DATA = 1;
-    public static final int SYNCFLAG_DOWNLOAD_FAVORITES = 2;
-    public static final int SYNCFLAG_UPLOAD_FAVORITES = 4;
 
     public static void syncData(Context context, int syncWhatFlags) {
         //Create Account needed for SyncAdapter
@@ -111,30 +109,6 @@ public class Util {
 
     public static void syncConventionData(Context context) {
         syncData(context, SYNCFLAG_CONVENTION_DATA);
-    }
-
-    public static void sendFavoriteDelta(Context context, String id, boolean isFavorite) {
-        //This does send all favorites, not just a delta. because im lazy
-        Util.syncData(context, Util.SYNCFLAG_UPLOAD_FAVORITES);
-    }
-
-    public static void showNotification(Context context, String message) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setContentTitle(context.getString(R.string.app_name));
-        builder.setContentText(message);
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
-        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_bronydays2015_launcher));
-        builder.setVibrate(new long[]{50, 250, 50, 250}); //delay,vibrate,delay,etc.
-        //http://stackoverflow.com/questions/8801122/set-notification-sound-from-assets-folder
-        //The docs are not clear about how to add sound, StackOverflow to the rescue!
-        builder.setSound(Uri.parse("android.resource://nl.frankkie.bronydays2015/raw/yay"));
-        builder.setSmallIcon(R.drawable.ic_stat_notification_heart);
-        Intent i = new Intent(context, ScheduleActivity.class);
-        PendingIntent pi = PendingIntent.getActivity(context, 0, i, 0);
-        builder.setContentIntent(pi);
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(1, builder.build());
     }
 
     public static String httpDownload(String urlToDownload) {

@@ -17,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import nl.frankkie.bronydays2015.data.EventContract;
-import nl.frankkie.bronydays2015.util.GcmUtil;
 import nl.frankkie.bronydays2015.util.Util;
 
 /**
@@ -44,55 +43,10 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
         int syncFlags = extras.getInt("syncflags", Util.SYNCFLAG_CONVENTION_DATA);
         //http://stackoverflow.com/questions/6067411/checking-flag-bits-java
         if ((syncFlags & Util.SYNCFLAG_CONVENTION_DATA) == Util.SYNCFLAG_CONVENTION_DATA) {
-            String regId = GcmUtil.gcmGetRegId(getContext());
             //CHANGE THIS URL WHEN USING FOR OTHER CONVENTION
-            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadconventiondata.php?regId=" + regId );
+            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadconventiondata.php");
             if (json != null) {
                 parseConventionDataJSON(json);
-            }
-        }
-        if ((syncFlags & Util.SYNCFLAG_DOWNLOAD_FAVORITES) == Util.SYNCFLAG_DOWNLOAD_FAVORITES) {
-            String regId = GcmUtil.gcmGetRegId(getContext());
-            //With username "&username=", for syncing between devices of same user
-            String json = Util.httpDownload("http://wofje.8s.nl/bronydays2015/api/v1/downloadfavorites.php?regId=" + regId );
-            if (json != null) {
-                parseFavoritesDataJson(json);
-            }
-        }
-        if ((syncFlags & Util.SYNCFLAG_UPLOAD_FAVORITES) == Util.SYNCFLAG_UPLOAD_FAVORITES) {
-            //this is for uploading all the favorites. For a delta, use Asynctask instead. See Util.
-            try {
-                Cursor cursor = getContext().getContentResolver().query(EventContract.FavoritesEntry.CONTENT_URI,
-                        new String[]{EventContract.FavoritesEntry.COLUMN_NAME_ITEM_ID},
-                        EventContract.FavoritesEntry.COLUMN_NAME_TYPE + " = 'event'", null, null);
-                if (cursor.getCount() != 0) {
-                    //Only do this when there is data to be send
-                    JSONObject root = new JSONObject();
-                    JSONArray events = new JSONArray();
-                    cursor.moveToFirst();
-                    do {
-                        events.put(cursor.getString(0));
-                    } while (cursor.moveToNext());
-                    cursor.close();
-                    root.put("events", events);
-                    JSONObject device = new JSONObject();
-                    device.put("regId", GcmUtil.gcmGetRegId(getContext()));
-                    root.put("device", device);
-                    JSONObject wrapper = new JSONObject();
-                    wrapper.put("data", root);
-                    String json = wrapper.toString();
-                    String postData = "json=" + json;
-                    ////////////////////////////
-                    String response = Util.httpPost(getContext(), "http://wofje.8s.nl/bronydays2015/api/v1/uploadfavorites.php", postData);
-                    if (!"ok".equals(response.trim())) {
-                        //There muse be something wrong
-                        Util.sendACRAReport("Server did not send 'ok', Favorites", "http://wofje.8s.nl/bronydays2015/api/v1/uploadfavorites.php", postData + "\n" + response);
-                    }
-                }
-                /////////////////////////////
-            } catch (Exception e) {
-                ACRA.getErrorReporter().handleException(e);
-                e.printStackTrace();
             }
         }
     }
@@ -110,9 +64,9 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
                 ContentValues values = new ContentValues();
                 values.put(EventContract.EventEntry._ID, event.getInt("_id"));
                 values.put(EventContract.EventEntry.COLUMN_NAME_TITLE, event.getString("title"));
-                values.put(EventContract.EventEntry.COLUMN_NAME_TITLE_NL, event.getString("title_nl"));
+                values.put(EventContract.EventEntry.COLUMN_NAME_TITLE_FR, event.getString("title_fr"));
                 values.put(EventContract.EventEntry.COLUMN_NAME_DESCRIPTION, event.getString("description"));
-                values.put(EventContract.EventEntry.COLUMN_NAME_DESCRIPTION_NL, event.getString("description_nl"));
+                values.put(EventContract.EventEntry.COLUMN_NAME_DESCRIPTION_FR, event.getString("description_fr"));
                 values.put(EventContract.EventEntry.COLUMN_NAME_KEYWORDS, event.getString("keywords"));
                 values.put(EventContract.EventEntry.COLUMN_NAME_IMAGE, event.getString("image"));
                 values.put(EventContract.EventEntry.COLUMN_NAME_COLOR, event.getString("color"));
@@ -139,9 +93,9 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
                 ContentValues values = new ContentValues();
                 values.put(EventContract.SpeakerEntry._ID, speaker.getInt("_id"));
                 values.put(EventContract.SpeakerEntry.COLUMN_NAME_NAME, speaker.getString("name"));
-                values.put(EventContract.SpeakerEntry.COLUMN_NAME_NAME_NL, speaker.getString("name_nl"));
+                values.put(EventContract.SpeakerEntry.COLUMN_NAME_NAME_FR, speaker.getString("name_fr"));
                 values.put(EventContract.SpeakerEntry.COLUMN_NAME_DESCRIPTION, speaker.getString("description"));
-                values.put(EventContract.SpeakerEntry.COLUMN_NAME_DESCRIPTION_NL, speaker.getString("description_nl"));
+                values.put(EventContract.SpeakerEntry.COLUMN_NAME_DESCRIPTION_FR, speaker.getString("description_fr"));
                 values.put(EventContract.SpeakerEntry.COLUMN_NAME_IMAGE, speaker.getString("image"));
                 values.put(EventContract.SpeakerEntry.COLUMN_NAME_COLOR, speaker.getString("color"));
                 speakerCVs[i] = values;
@@ -159,9 +113,9 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
                 ContentValues values = new ContentValues();
                 values.put(EventContract.LocationEntry._ID, location.getInt("_id"));
                 values.put(EventContract.LocationEntry.COLUMN_NAME_NAME, location.getString("name"));
-                values.put(EventContract.LocationEntry.COLUMN_NAME_NAME_NL, location.getString("name_nl"));
+                values.put(EventContract.LocationEntry.COLUMN_NAME_NAME_FR, location.getString("name_fr"));
                 values.put(EventContract.LocationEntry.COLUMN_NAME_DESCRIPTION, location.getString("description"));
-                values.put(EventContract.LocationEntry.COLUMN_NAME_DESCRIPTION_NL, location.getString("description_nl"));
+                values.put(EventContract.LocationEntry.COLUMN_NAME_DESCRIPTION_FR, location.getString("description_fr"));
                 values.put(EventContract.LocationEntry.COLUMN_NAME_MAP_LOCATION, location.getString("map_location"));
                 values.put(EventContract.LocationEntry.COLUMN_NAME_FLOOR, location.getInt("floor"));
                 locationCVs[i] = values;
@@ -191,28 +145,5 @@ public class ConventionSyncAdapter extends AbstractThreadedSyncAdapter {
             ACRA.getErrorReporter().handleException(e);
         }
         //</editor-fold>
-    }
-
-    public void parseFavoritesDataJson(String json) {
-        try {
-            JSONObject root = new JSONObject(json);
-            JSONObject data = root.getJSONObject("data");
-            JSONArray events = data.getJSONArray("events");
-            ContentValues[] eCVs = new ContentValues[events.length()];
-            for (int i = 0; i < events.length(); i++) {
-                int id = Integer.parseInt(events.getString(i));
-                ContentValues eCV = new ContentValues();
-                eCV.put(EventContract.FavoritesEntry.COLUMN_NAME_TYPE, EventContract.FavoritesEntry.TYPE_EVENT);
-                eCV.put(EventContract.FavoritesEntry.COLUMN_NAME_ITEM_ID, id);
-                eCVs[i] = eCV;
-            }
-            getContext().getContentResolver().delete(EventContract.FavoritesEntry.CONTENT_URI, null, null);
-            getContext().getContentResolver().bulkInsert(EventContract.FavoritesEntry.CONTENT_URI, eCVs);
-            getContext().getContentResolver().notifyChange(EventContract.FavoritesEntry.CONTENT_URI, null);
-            //TODO add code to sync other types of favorites.
-        } catch (JSONException e) {
-            Log.e("Convention", "Error in SyncAdapter.onPerformSync, ConventionData JSON ", e);
-            ACRA.getErrorReporter().handleException(e);
-        }
     }
 }

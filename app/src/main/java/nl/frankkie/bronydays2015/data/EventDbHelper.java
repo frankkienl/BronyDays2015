@@ -31,9 +31,9 @@ public class EventDbHelper extends SQLiteOpenHelper {
         String sqlEvent = "CREATE TABLE " + EventEntry.TABLE_NAME + " ( " +
                 EventEntry._ID + " INTEGER PRIMARY KEY, " +
                 EventEntry.COLUMN_NAME_TITLE + " TEXT, " +
-                EventEntry.COLUMN_NAME_TITLE_NL + " TEXT, " +
+                EventEntry.COLUMN_NAME_TITLE_FR + " TEXT, " +
                 EventEntry.COLUMN_NAME_DESCRIPTION + " TEXT, " +                
-                EventEntry.COLUMN_NAME_DESCRIPTION_NL + " TEXT, " +
+                EventEntry.COLUMN_NAME_DESCRIPTION_FR + " TEXT, " +
                 EventEntry.COLUMN_NAME_KEYWORDS + " TEXT, " +
                 EventEntry.COLUMN_NAME_IMAGE + " TEXT, " +
                 EventEntry.COLUMN_NAME_COLOR + " TEXT, " +
@@ -46,9 +46,9 @@ public class EventDbHelper extends SQLiteOpenHelper {
         String sqlSpeaker = "CREATE TABLE " + SpeakerEntry.TABLE_NAME + " ( " +
                 SpeakerEntry._ID + " INTEGER PRIMARY KEY, " +
                 SpeakerEntry.COLUMN_NAME_NAME + " TEXT, " +
-                SpeakerEntry.COLUMN_NAME_NAME_NL + " TEXT, " +
+                SpeakerEntry.COLUMN_NAME_NAME_FR + " TEXT, " +
                 SpeakerEntry.COLUMN_NAME_DESCRIPTION + " TEXT, " +
-                SpeakerEntry.COLUMN_NAME_DESCRIPTION_NL + " TEXT, " +
+                SpeakerEntry.COLUMN_NAME_DESCRIPTION_FR + " TEXT, " +
                 SpeakerEntry.COLUMN_NAME_IMAGE + " TEXT, " +
                 SpeakerEntry.COLUMN_NAME_COLOR + " TEXT )";
         db.execSQL(sqlSpeaker);
@@ -56,9 +56,9 @@ public class EventDbHelper extends SQLiteOpenHelper {
         String sqlLocation = "CREATE TABLE " + LocationEntry.TABLE_NAME + " ( " +
                 LocationEntry._ID + " INTEGER PRIMARY KEY, " +
                 LocationEntry.COLUMN_NAME_NAME + " TEXT, " +
-                LocationEntry.COLUMN_NAME_NAME_NL + " TEXT, " +
+                LocationEntry.COLUMN_NAME_NAME_FR + " TEXT, " +
                 LocationEntry.COLUMN_NAME_DESCRIPTION + " TEXT, " +
-                LocationEntry.COLUMN_NAME_DESCRIPTION_NL + " TEXT, " +
+                LocationEntry.COLUMN_NAME_DESCRIPTION_FR + " TEXT, " +
                 LocationEntry.COLUMN_NAME_MAP_LOCATION + " TEXT, " +
                 LocationEntry.COLUMN_NAME_FLOOR + " INTEGER )";
         db.execSQL(sqlLocation);
@@ -82,9 +82,9 @@ public class EventDbHelper extends SQLiteOpenHelper {
                 EventContract.QrEntry._ID + " INTEGER PRIMARY KEY, " +
                 EventContract.QrEntry.COLUMN_NAME_HASH + " TEXT, " +
                 EventContract.QrEntry.COLUMN_NAME_NAME + " TEXT, " +
-                EventContract.QrEntry.COLUMN_NAME_NAME_NL + " TEXT, " +
+                EventContract.QrEntry.COLUMN_NAME_NAME_FR + " TEXT, " +
                 EventContract.QrEntry.COLUMN_NAME_DESCRIPTION + " TEXT, " +
-                EventContract.QrEntry.COLUMN_NAME_DESCRIPTION_NL + " TEXT, " +
+                EventContract.QrEntry.COLUMN_NAME_DESCRIPTION_FR + " TEXT, " +
                 EventContract.QrEntry.COLUMN_NAME_IMAGE + " TEXT )";
         db.execSQL(sqlQr);
 

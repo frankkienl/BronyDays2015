@@ -32,9 +32,9 @@ public class EventContract {
         //
         public static final String TABLE_NAME = "event";
         public static final String COLUMN_NAME_TITLE = "title";
-        public static final String COLUMN_NAME_TITLE_NL = "title_nl";
+        public static final String COLUMN_NAME_TITLE_FR = "title_fr";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
-        public static final String COLUMN_NAME_DESCRIPTION_NL = "description_nl";
+        public static final String COLUMN_NAME_DESCRIPTION_FR = "description_fr";
         public static final String COLUMN_NAME_KEYWORDS = "keywords";
         public static final String COLUMN_NAME_IMAGE = "image";
         public static final String COLUMN_NAME_COLOR = "color";
@@ -61,9 +61,9 @@ public class EventContract {
         public static final String TABLE_NAME = "speaker";
         //
         public static final String COLUMN_NAME_NAME = "name";
-        public static final String COLUMN_NAME_NAME_NL = "name_nl";
+        public static final String COLUMN_NAME_NAME_FR = "name_fr";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
-        public static final String COLUMN_NAME_DESCRIPTION_NL = "description_nl";
+        public static final String COLUMN_NAME_DESCRIPTION_FR = "description_fr";
         public static final String COLUMN_NAME_IMAGE = "image";
         public static final String COLUMN_NAME_COLOR = "color";
 
@@ -84,9 +84,9 @@ public class EventContract {
         public static final String TABLE_NAME = "location";
         //
         public static final String COLUMN_NAME_NAME = "name";
-        public static final String COLUMN_NAME_NAME_NL = "name_nl";
+        public static final String COLUMN_NAME_NAME_FR = "name_fr";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
-        public static final String COLUMN_NAME_DESCRIPTION_NL = "description_nl";
+        public static final String COLUMN_NAME_DESCRIPTION_FR = "description_fr";
         public static final String COLUMN_NAME_MAP_LOCATION = "map_location";
         public static final String COLUMN_NAME_FLOOR = "floor"; //where 0 is ground-level.
 
@@ -159,9 +159,9 @@ public class EventContract {
         public static final String TABLE_NAME = "qr";
         public static final String COLUMN_NAME_HASH = "hash";
         public static final String COLUMN_NAME_NAME = "name";
-        public static final String COLUMN_NAME_NAME_NL = "name_nl";
+        public static final String COLUMN_NAME_NAME_FR = "name_fr";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
-        public static final String COLUMN_NAME_DESCRIPTION_NL = "description_nl";
+        public static final String COLUMN_NAME_DESCRIPTION_FR = "description_fr";
         public static final String COLUMN_NAME_IMAGE = "image";
 
         public static Uri buildQrUri(long id){
