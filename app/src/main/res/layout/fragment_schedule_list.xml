@@ -13,7 +13,7 @@
 
     <TextView
         android:visibility="gone"
-        android:text="@string/schedule_empty"
+        android:text="@string/browse_empty"
         android:id="@android:id/empty"
         style="@style/textStyle_details"
         android:layout_width="match_parent"

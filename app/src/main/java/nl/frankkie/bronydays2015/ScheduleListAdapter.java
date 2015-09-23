@@ -46,6 +46,7 @@ public class ScheduleListAdapter extends CursorAdapter {
         long time = cursor.getLong(ScheduleListFragment.COL_TIME);
         viewHolder.timeView.setText(Util.getDataTimeString(time));
         //no image or color in Schedule
+        viewHolder.starView.setEnabled(false); //not able to set here, only in the fragment
         viewHolder.starView.setChecked((cursor.getInt(ScheduleListFragment.COL_FAVORITE_ID) != 0));
     }
 
