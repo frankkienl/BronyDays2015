@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
     <string name="about_date_details">31 Oct - 1er Nov 2015</string>
     <string name="about_date_header">Date</string>
     <string name="about_location_header">Lieu</string>

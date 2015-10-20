@@ -20,6 +20,8 @@
 
     <string name="share_text">I\'ll go to the event \'%s\' during BronyDays 2015! #bronydays2015</string>
 
+    <string name="star_tip_message">Click the Star to add this Event to \'My Schedule\'.  Do this for all Events you intend to attend.</string>
+
     <string name="about_mail_header">Mail</string>
     <string name="about_date_header">Date</string>
     <string name="about_location_header">Location</string>
@@ -62,5 +64,7 @@
     <string name="browse_empty">Please wait until data is synced...</string>
     <string name="about_date_details">October 31st - November 1st 2015</string>
     <string name="current_lang">EN</string>
+    <string name="star_tip_title">Tip</string>
+    <string name="schedule_empty">There is nothing here yet.</string>
 
 </resources>
