@@ -1,10 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
-    <string name="about_date_details">31 Oct - 1er Nov 2015</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="title_event_detail">Détail de l\'événement</string>
+    <string name="title_activity_about">A propos</string>
+    <string name="title_activity_map">Carte</string>
+    <string name="title_activity_schedule">Calendrier</string>
+
+    <string name="title_section_schedule">Mon calendrier</string>
+    <string name="title_section_browse">Parcourir</string>
+    <string name="title_section_map">Carte</string>
+    <string name="title_section_about">A propos</string>
+
+    <string name="navigation_drawer_open">Ouvrir le menu</string>
+    <string name="navigation_drawer_close">Fermer le menu</string>
+    <string name="action_example">Exemple d\'action</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_share">Partager</string>
+    <string name="action_star_add">Ajouter aux favoris</string>
+    <string name="action_star_remove">Retirer des favoris</string>
+
+    <string name="share_text">Je vais assister à l\'événement \'%s\' pendant les BronyDays 2015! #bronydays2015</string>
+
+    <string name="star_tip_message">Cliquez sur l\'étoile pour ajouter cet événement à \'Mon calendrier\'.  Faites cela pour tous les événements auxquels vous souhaitez participer.</string>
+
+    <string name="about_mail_header">Mail</string>
     <string name="about_date_header">Date</string>
-    <string name="about_location_header">Lieu</string>
-    <string name="app_name">Brony Days</string>
-    <string name="label_location"></string>
-    <string name="current_lang">FR</string>
-    <string name="about_convention_title">Brony Days</string>
+    <string name="about_location_header">Emplacement</string>
+    <string name="about_website_header">Site web</string>
+
+    <string name="label_keywords">Tags</string>
+    <string name="label_time">Heure</string>
+    <string name="label_location">Emplacement</string>
+    <string name="label_speakers">Confériencier</string>
+    <!--
+        Specific for this convention
+        Change these when using for another convention
+    -->
+    <string name="app_name">BronyDays</string>
+    <string name="about_convention_title">BronyDays</string>
+    <string name="about_description">Une convention My little Pony en France!</string>
+    <string name="about_location_details">Salle de L\'Odyssée \nLe Bois Cesbron \n44706 Orvault \nNantes, France</string>
+    <string name="about_mail_details">info@bronydays.org</string>
+    <string name="about_website_details">www.bronydays.org/en/</string>
+
+    <string name="map_floor0">Rez-de-chaussé</string>
+    <string name="map_floor1">1er étage</string>
+    <string name="map_floor2">Dernier étage</string>
+
+    <!-- Don't translate these // -->
+    <string name="syncadapter_domain" translatable="false">nl.frankkie.bronydays2015</string>
+    <string name="syncadapter_authority" translatable="false">nl.frankkie.bronydays2015</string>
+    <string name="placeholder_short" translatable="false">Lorem ipsum</string>
+    <string name="placeholder_long" translatable="false">Lorem ipsum dolor sit amet.</string>
+    <string name="placeholder_very_long" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent viverra aliquam neque id ultrices. Nullam lobortis orci eu varius tincidunt. In convallis lorem diam. Maecenas auctor sagittis porttitor. Curabitur dapibus neque odio, in finibus orci rutrum non. Nullam dapibus elit id magna porta, id condimentum purus pretium. Aenean non erat rutrum, finibus dui ut, ornare odio. Aliquam mollis pretium neque, at consequat ligula posuere vitae. Vestibulum sed venenatis felis. Nullam lorem lorem, bibendum vitae urna nec, viverra consequat erat.</string>
+    <!-- Endof dont translate // -->
+    <string name="about_map_app_not_found">Il n\'y a pas d\'application cartographique (comme Google Maps) installée. Merci d\'en installer une et de réessayer.</string>
+    <string name="about_this_app">A propos de cette application</string>
+    <string name="aboutapp_licences">Licences</string>
+    <string name="title_activity_about_app">A propos de cette application</string>
+    <string name="aboutapp_frankkienl_description">Application créée par FrankkieNL \nPour plus d\'application, rendez-vous sur : \nhttp://frankkie.nl/</string>
+    <string name="title_section_qr_hunt">Chasse aux QR Codes</string>
+    <string name="title_section_login">Connexion/Déconnexion</string>
+    <string name="about_view_map">Voir sur la carte</string>
+    <string name="browse_empty">Vueillez patienter pendant la synchronisation des données...</string>
+    <string name="about_date_details">31 Octobre - 1er Novembre 2015</string>
+    <string name="current_lang">EN</string>
+    <string name="star_tip_title">Don</string>
+    <string name="schedule_empty">Il n\'y a rien ici pour le moment.</string>
+
 </resources>
