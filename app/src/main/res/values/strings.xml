@@ -35,7 +35,7 @@
         Specific for this convention
         Change these when using for another convention
     -->
-    <string name="app_name">Brony Days</string>
+    <string name="app_name">Bronydays</string>
     <string name="about_convention_title">Brony Days</string>
     <string name="about_description">A My little Pony Convention in France!</string>
     <string name="about_location_details">Salle de L\'Odyssée \nLe Bois Cesbron \n44706 Orvault \nNantes, France</string>
