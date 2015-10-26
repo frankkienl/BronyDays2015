@@ -18,7 +18,7 @@
     <string name="action_star_add">Add to favorites</string>
     <string name="action_star_remove">Remove from favorites</string>
 
-    <string name="share_text">I\'ll go to the event \'%s\' during BronyDays 2015! #bronydays2015</string>
+    <string name="share_text">I\'ll go to the event \'%s\' during Bronydays 2015! #bronydays2015</string>
 
     <string name="star_tip_message">Click the Star to add this Event to \'My Schedule\'.  Do this for all Events you intend to attend.</string>
 
@@ -36,7 +36,7 @@
         Change these when using for another convention
     -->
     <string name="app_name">Bronydays</string>
-    <string name="about_convention_title">Brony Days</string>
+    <string name="about_convention_title">Bronydays</string>
     <string name="about_description">A My little Pony Convention in France!</string>
     <string name="about_location_details">Salle de L\'Odyssée \nLe Bois Cesbron \n44706 Orvault \nNantes, France</string>
     <string name="about_mail_details">info@bronydays.org</string>
