@@ -1,8 +1,10 @@
 body
 {
 background-color: #DD6600;
+margin: 0;
+padding: 0;
 }
 
 img {
-margin 5px;
+margin 0;
 }

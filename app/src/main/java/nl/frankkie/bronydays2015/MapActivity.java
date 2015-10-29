@@ -112,7 +112,7 @@ public class MapActivity extends ActionBarActivity implements NavigationDrawerFr
         //http://stackoverflow.com/questions/3808532/how-to-set-the-initial-zoom-width-for-a-webview
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setUseWideViewPort(true);
-        wv.loadUrl("file:///android_asset/map.html");
+        wv.loadUrl("file:///android_asset/bronydays2015.html");
         wv.getSettings().setBuiltInZoomControls(true);
     }
 
